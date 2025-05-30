@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const Car = require("../models/Car");
 
-// Получить все авто
+// 🔹 Получить все авто
 router.get("/", async (req, res) => {
     try {
         const cars = await Car.find();
@@ -12,7 +12,7 @@ router.get("/", async (req, res) => {
     }
 });
 
-// Добавить новое авто
+// 🔹 Добавить новое авто
 router.post("/", async (req, res) => {
     try {
         const newCar = new Car(req.body);
@@ -23,7 +23,7 @@ router.post("/", async (req, res) => {
     }
 });
 
-// Получить одно авто
+// 🔹 Получить одно авто по ID
 router.get("/:id", async (req, res) => {
     try {
         const car = await Car.findById(req.params.id);
@@ -34,7 +34,7 @@ router.get("/:id", async (req, res) => {
     }
 });
 
-// Обновить авто
+// 🔹 Обновить авто по ID
 router.put("/:id", async (req, res) => {
     try {
         const updated = await Car.findByIdAndUpdate(req.params.id, req.body, { new: true });
@@ -44,7 +44,7 @@ router.put("/:id", async (req, res) => {
     }
 });
 
-// Удалить авто
+// 🔹 Удалить авто по ID
 router.delete("/:id", async (req, res) => {
     try {
         await Car.findByIdAndDelete(req.params.id);
