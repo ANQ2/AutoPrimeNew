@@ -1,26 +1,72 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #f8f9fa;      /* светлый фон */
+  --foreground: #212529;      /* тёмный текст */
+  --font-sans: 'Inter', sans-serif;
+  --font-mono: 'Courier New', monospace;
+
+  /* Цвета интерфейса */
+  --primary: #2563eb;
+  --primary-hover: #1e40af;
+  --border-radius: 8px;
+  --transition: 0.2s ease-in-out;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
+/* Отключаем автоматическую тёмную тему */
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    /* не применяем тёмную тему */
   }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+  transition: background var(--transition), color var(--transition);
+}
+
+/* Заголовки */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 600;
+  margin-top: 0;
+  color: var(--foreground);
+}
+
+/* Кнопки */
+button {
+  background-color: var(--primary);
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: var(--border-radius);
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color var(--transition);
+}
+
+button:hover {
+  background-color: var(--primary-hover);
+}
+
+/* Ссылки */
+a {
+  color: var(--primary);
+  text-decoration: none;
+  transition: color var(--transition);
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Контейнер */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem;
 }
