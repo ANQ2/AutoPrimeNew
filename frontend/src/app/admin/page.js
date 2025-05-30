@@ -1,46 +1,56 @@
 "use client";
 
 import Link from "next/link";
+import { Car, Users, UserCog, Package } from "lucide-react";
 
 export default function AdminDashboard() {
-    return (
-        <main className="max-w-xl mx-auto p-6">
-            <h1 className="text-3xl font-bold mb-6">Админ-панель</h1>
+  return (
+    <main className="min-h-screen bg-gray-100 py-12 px-4">
+      <div className="max-w-3xl mx-auto">
+        <h1 className="text-4xl font-extrabold text-center text-gray-800 mb-12">
+          Панель администратора
+        </h1>
 
-            <ul className="space-y-4">
-                <li>
-                    <Link
-                        href="/admin/cars"
-                        className="block p-4 bg-gray-800 text-white rounded hover:bg-gray-700"
-                    >
-                        🚗 Добавить автомобиль
-                    </Link>
-                </li>
-                <li>
-                    <Link
-                        href="/admin/employees"
-                        className="block p-4 bg-gray-800 text-white rounded hover:bg-gray-700"
-                    >
-                        👨‍💼 Менеджеры
-                    </Link>
-                </li>
-                <li>
-                    <Link
-                        href="/admin/clients"
-                        className="block p-4 bg-gray-800 text-white rounded hover:bg-gray-700"
-                    >
-                        👥 Клиенты
-                    </Link>
-                </li>
-                <li>
-                    <Link
-                        href="/admin/supplies"
-                        className="block p-4 bg-gray-800 text-white rounded hover:bg-gray-700"
-                    >
-                        📦 Поставки (опционально)
-                    </Link>
-                </li>
-            </ul>
-        </main>
-    );
+        <div className="grid sm:grid-cols-2 gap-6">
+          <Link
+            href="/admin/cars"
+            className="flex items-center gap-4 p-6 bg-white rounded-xl shadow hover:shadow-lg hover:scale-[1.01] transition"
+          >
+            <Car className="text-blue-600 w-6 h-6" />
+            <span className="text-lg text-gray-800 font-medium">
+              Добавить автомобиль
+            </span>
+          </Link>
+
+          <Link
+            href="/admin/employees"
+            className="flex items-center gap-4 p-6 bg-white rounded-xl shadow hover:shadow-lg hover:scale-[1.01] transition"
+          >
+            <UserCog className="text-green-600 w-6 h-6" />
+            <span className="text-lg text-gray-800 font-medium">
+              Менеджеры
+            </span>
+          </Link>
+
+          <Link
+            href="/admin/clients"
+            className="flex items-center gap-4 p-6 bg-white rounded-xl shadow hover:shadow-lg hover:scale-[1.01] transition"
+          >
+            <Users className="text-purple-600 w-6 h-6" />
+            <span className="text-lg text-gray-800 font-medium">Клиенты</span>
+          </Link>
+
+          <Link
+            href="/admin/supplies"
+            className="flex items-center gap-4 p-6 bg-white rounded-xl shadow hover:shadow-lg hover:scale-[1.01] transition"
+          >
+            <Package className="text-yellow-600 w-6 h-6" />
+            <span className="text-lg text-gray-800 font-medium">
+              Поставки (опционально)
+            </span>
+          </Link>
+        </div>
+      </div>
+    </main>
+  );
 }
