@@ -29,14 +29,14 @@ export default function ChatWithClient() {
         if (!user || !clientId) return;
 
         axios
-            .get(`http://localhost:5000/api/messages/${user._id}/${clientId}`)
+            .get(`http://localhost:5000/api/messages/conversation/${clientId}/${user._id}`)
             .then((res) => setMessages(res.data))
             .catch(console.error);
 
         socket.on("newMessage", (msg) => {
             const relevant =
                 (msg.sender === user._id && msg.receiver === clientId) ||
-                (msg.sender === clientId && msg.receiver === user._id);
+                (msg.sender === clientId && (msg.receiver === user._id || msg.receiver === null));
 
             if (relevant) {
                 setMessages((prev) => [...prev, msg]);

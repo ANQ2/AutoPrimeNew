@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const Client = require("../models/Client");
 const Message = require("../models/Message");
 
 // Получить список уникальных отправителей
@@ -35,12 +36,19 @@ router.get("/:user1/:user2", async (req, res) => {
     }
 });
 
-router.get("/:id", async (req, res) => {
-    try {
-        const client = await Client.findById(req.params.id);
-        if (!client) return res.status(404).json({ error: "Клиент не найден" });
+router.get("/conversation/:clientId/:managerId", async (req, res) => {
+    const { clientId, managerId } = req.params;
 
-        res.json(client);
+    try {
+        const messages = await Message.find({
+            $or: [
+                { sender: clientId, receiver: null },  // клиент пишет без получателя
+                { sender: clientId, receiver: managerId },
+                { sender: managerId, receiver: clientId },
+            ]
+        }).sort({ timestamp: 1 });
+
+        res.json(messages);
     } catch (err) {
         res.status(500).json({ error: err.message });
     }
